@@ -1,8 +1,25 @@
 document.addEventListener("DOMContentLoaded",function(){
+    document.getElementById("add-customer-view").hidden = true;
+    const addCustomerForm = document.getElementById("addCustomer");
+    const submitCustomerButton = document.getElementById("SubmitNewCust");
+    const goBackButton = document.getElementById("goBack");
 
+    addCustomerForm.addEventListener("click", function(event){
+        event.preventDefault();
+        document.getElementById("main-view").hidden = true;
+        document.getElementById("add-customer-view").hidden = false;
+    })
+    goBackButton.addEventListener("click",function(event){
+        event.preventDefault();
+        document.getElementById("add-customer-view").hidden = true;
+        document.getElementById("main-view").hidden = false;
+    })
+    submitCustomerButton.addEventListener("click",function(event){
+        event.preventDefault();
+        validateAddCust();
+    });
 })
 
-document.getElementById("SubmitNewCust").addEventListener("click",validateAddCust);
 
 function validateAddCust(){
     const id = document.getElementById("ID").value;
@@ -17,7 +34,7 @@ function validateAddCust(){
     let valid = true;
     let errMsg = "Error Missing/Invalid Fields: <br><br>";
 
-    document.getElementById("notice").innerHTML = "";
+    document.getElementById("notice").innerHTML ='';
 
     if (id ===''){
         valid = false;
